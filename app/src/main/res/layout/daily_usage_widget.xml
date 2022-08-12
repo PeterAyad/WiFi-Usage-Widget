@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.Widget.AppWidget.Container"
     android:layout_width="150dp"
     android:layout_height="40dp"
@@ -8,18 +9,25 @@
     android:theme="@style/Theme.Widget.AppWidgetContainer">
 
     <TextView
-        android:textAlignment="center"
         android:id="@+id/appwidget_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/appwidget_text"
         android:gravity="center"
-        android:paddingRight="5dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:fontFamily="sans-serif"
         android:text="@string/appwidget_text"
+        android:textAlignment="center"
         android:textColor="@android:color/tab_indicator_text"
         android:textSize="24sp"
-        android:textStyle="italic" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/appwidget_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/appwidget_image"
@@ -28,8 +36,13 @@
         android:layout_gravity="center_vertical"
         android:adjustViewBounds="true"
         android:clickable="true"
-        android:contentDescription="refresh"
+        android:contentDescription="@string/refresh"
         android:focusable="true"
-        android:src="@drawable/ic_baseline_refresh_24" />
+        android:src="@drawable/ic_baseline_refresh_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/appwidget_text"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

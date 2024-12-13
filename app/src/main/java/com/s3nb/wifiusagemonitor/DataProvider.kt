@@ -13,10 +13,14 @@ class DataProvider {
     companion object {
         @RequiresApi(Build.VERSION_CODES.M)
         fun getTotalUsage(context: Context): String {
+            val c2 = Calendar.getInstance()
+            c2.add(Calendar.YEAR, -100)
+            val startOfCentury = c2.timeInMillis
+
             val calendar = Calendar.getInstance()
             calendar.add(Calendar.DATE, 1)
             val end = calendar.timeInMillis
-            return getUsage(context, 0, end)
+            return getUsage(context, startOfCentury, end)
         }
 
 
@@ -72,11 +76,13 @@ class DataProvider {
             val resultInMB = (downloads + uploads) / (1024 * 1024.0)
             return if (resultInMB > 999) {
                 String.format(
+                    Locale.US,
                     "%.2f",
                     resultInMB / 1000.0
                 ) + " GB"
             } else {
                 String.format(
+                    Locale.US,
                     "%.0f",
                     resultInMB
                 ) + " MB"

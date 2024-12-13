@@ -18,9 +18,8 @@ class DailyUsageWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
-        }
+        updateAppWidget(context, appWidgetManager, appWidgetIds)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -36,7 +35,7 @@ class DailyUsageWidget : AppWidgetProvider() {
                     updateAppWidget(
                         context,
                         AppWidgetManager.getInstance(context),
-                        extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_IDS)
+                        extras.getIntArray(AppWidgetManager.EXTRA_APPWIDGET_IDS)
                     )
                 }
             }
@@ -47,11 +46,11 @@ class DailyUsageWidget : AppWidgetProvider() {
     fun updateAppWidget(
         context: Context,
         appWidgetManager: AppWidgetManager,
-        appWidgetId: Int
+        appWidgetIds: IntArray?
     ) {
         val remoteV = RemoteViews(context.packageName, R.layout.daily_usage_widget)
         val intentSync = Intent(context, DailyUsageWidget::class.java)
-        intentSync.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, arrayOf(appWidgetId))
+        intentSync.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
         intentSync.action =
             AppWidgetManager.ACTION_APPWIDGET_UPDATE
         val pendingSync = PendingIntent.getBroadcast(

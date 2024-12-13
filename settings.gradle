@@ -3,7 +3,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        //noinspection JcenterRepositoryObsolete
+        jcenter()
     }
 }
 rootProject.name = "WiFi Usage Monitor"

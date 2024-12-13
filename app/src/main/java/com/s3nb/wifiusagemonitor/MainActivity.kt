@@ -39,11 +39,23 @@ class MainActivity : AppCompatActivity() {
     private fun grantPermission() {
         val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
         startActivity(intent)
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.READ_PHONE_STATE),
-            1
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ),
+                1
+            )
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_PHONE_STATE),
+                1
+            )
+        }
+
     }
 
 

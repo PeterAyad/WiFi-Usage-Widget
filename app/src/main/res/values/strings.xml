@@ -4,4 +4,8 @@
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is daily WiFi usage widget</string>
     <string name="refresh">Refresh</string>
+    <string name="today_usage">Today Usage:</string>
+    <string name="month_usage">Month Usage:</string>
+    <string name="total_usage">Total Usage:</string>
+    <string name="no_data">No Data</string>
 </resources>
